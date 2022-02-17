@@ -15,3 +15,9 @@
 
 # Join us !
 * https://discord.gg/purefunc
+
+# Support Communities
+* TWKUG
+* TWJUG
+* GDG Taiwan
+* DevOps Taiwan
