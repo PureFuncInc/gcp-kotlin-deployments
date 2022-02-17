@@ -8,5 +8,5 @@
 * Cloud Run
 * Kubernetes
 
-# Join me !
-* https://discord.gg/ygWa5Kr498
+# Join us !
+* https://discord.gg/purefunc
