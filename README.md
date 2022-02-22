@@ -10,8 +10,8 @@
 * Cloud Functions (FAAS)
 * App Engine (PAAS)
 * Compute Engine (IAAS)
-* Cloud Run (CAAS)
 * Kubernetes (CAAS)
+* Cloud Run (CAAS)
 
 # Join us !
 * https://discord.gg/purefunc
@@ -21,3 +21,4 @@
 * TWJUG
 * GDG Taiwan
 * DevOps Taiwan
+* ...
