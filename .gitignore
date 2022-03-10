@@ -1,6 +1,1 @@
-/ansible/**/*.pem
-/ansible/**/aws.yml
-/terraform/**/variables.tf
-/terraform/**/.terraform
-/terraform/**/*.json
 .idea

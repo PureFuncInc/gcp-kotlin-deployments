@@ -1,0 +1,6 @@
+/ansible/**/*.pem
+/terraform/**/variables.tf
+/terraform/**/.terraform
+/terraform/**/*.json
+/terraform/**/*.tfstate
+/terraform/**/*.tfstate.backup
