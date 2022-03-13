@@ -18,22 +18,21 @@ terraform {
 variable "region" { default = "asia-east1" }
 variable "zone" { default = "asia-east1-b" }
 variable "service_name" { default = "gcp-kotlin-deployment" }
-variable "environment" { default = "all" }
 variable "district" { default = "tw" }
 variable "cloud" { default = "gcp" }
 
 provider "google" {
-  project     = "${var.service_name}-${var.environment}"
+  project     = var.service_name
   region      = var.region
   zone        = var.zone
-  credentials = "${var.service_name}-${var.environment}-${var.district}-${var.cloud}.json"
+  credentials = "${var.service_name}-${var.district}-${var.cloud}.json"
 }
 
 provider "google-beta" {
-  project     = "${var.service_name}-${var.environment}"
+  project     = var.service_name
   region      = var.region
   zone        = var.zone
-  credentials = "${var.service_name}-${var.environment}-${var.district}-${var.cloud}.json"
+  credentials = "${var.service_name}-${var.district}-${var.cloud}.json"
 }
 
 //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -105,14 +104,14 @@ resource "tls_private_key" "private_key" {
 
 resource "local_file" "ssh_private_key_pem" {
   content         = tls_private_key.private_key.private_key_pem
-  filename        = "../../../../../ansible/${var.service_name}/${var.environment}/tw/gcp/${var.service_name}-${var.environment}-${var.district}-${var.cloud}.pem"
+  filename        = "../../../ansible/tw/gcp/${var.service_name}-${var.district}-${var.cloud}.pem"
   file_permission = "0400"
 }
 
 data "google_client_openid_userinfo" "userinfo" {}
 
 resource "google_compute_firewall" "firewall" {
-  name    = "${var.service_name}-${var.environment}-${var.district}-${var.cloud}-firewall"
+  name    = "${var.service_name}-${var.district}-${var.cloud}-firewall"
   network = "default"
 
   allow {
@@ -122,15 +121,15 @@ resource "google_compute_firewall" "firewall" {
 
   source_ranges = ["0.0.0.0/0"]
 
-  target_tags = ["${var.service_name}-${var.environment}"]
+  target_tags = [var.service_name]
 }
 
 resource "google_compute_address" "address" {
-  name = "${var.service_name}-${var.environment}-${var.district}-${var.cloud}-address"
+  name = "${var.service_name}-${var.district}-${var.cloud}-address"
 }
 
 resource "google_compute_instance" "instance" {
-  name         = "${var.service_name}-${var.environment}-${var.district}-${var.cloud}-instance"
+  name         = "${var.service_name}-${var.district}-${var.cloud}-instance"
   machine_type = "e2-medium"
 
   metadata = {
@@ -154,14 +153,13 @@ resource "google_compute_instance" "instance" {
 
   deletion_protection = true
 
-  tags = ["${var.service_name}-${var.environment}"]
+  tags = [var.service_name]
 
   labels = {
-    terraform   = true
-    service     = var.service_name
-    environment = var.environment
-    district    = var.district
-    cloud       = var.cloud
+    terraform = true
+    service   = var.service_name
+    district  = var.district
+    cloud     = var.cloud
   }
 }
 

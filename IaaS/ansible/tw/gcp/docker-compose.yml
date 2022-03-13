@@ -1,31 +1,12 @@
 version: "3.3"
 
 services:
-  ticket-service:
+  service:
     image: jianminhuang/service:0.1.0
     ports:
       - "8080:8080"
     environment:
-      - SPRING_PROFILES_ACTIVE=stage
       - TZ=Asia/Taipei
-    networks:
-      - default
-
-  redis:
-    image: redis:6
-    expose:
-      - 6379
-    networks:
-      - default
-
-  postgresql:
-    image: postgres:13
-    environment:
-      - POSTGRES_PASSWORD=rootroot
-    expose:
-      - 5432
-    ports:
-      - "5432:5432"
     networks:
       - default
 
