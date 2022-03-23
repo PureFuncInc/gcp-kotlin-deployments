@@ -21,6 +21,9 @@
 # Join us !
 * https://discord.gg/purefunc
 
+# Submit Proposal
+
+
 # Support Communities
 * [TWJUG](https://www.facebook.com/groups/twjug/)
 * [TWKUG](https://taiwan-kotlin-user-group.github.io/)
