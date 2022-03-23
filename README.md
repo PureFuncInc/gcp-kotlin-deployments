@@ -22,7 +22,7 @@
 * https://discord.gg/purefunc
 
 # Submit Proposal
-
+* COSCUP
 
 # Support Communities
 * [TWJUG](https://www.facebook.com/groups/twjug/)
