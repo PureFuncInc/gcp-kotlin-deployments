@@ -151,7 +151,7 @@ resource "google_compute_instance" "instance" {
     }
   }
 
-  deletion_protection = true
+  deletion_protection = false
 
   tags = [var.service_name]
 
