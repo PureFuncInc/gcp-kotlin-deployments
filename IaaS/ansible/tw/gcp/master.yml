@@ -7,50 +7,50 @@
     - name: Test Server Connection
       ping:
 
-#    - name: Install required packages
-#      apt:
-#        name: "{{ item }}"
-#        state: latest
-#        update_cache: true
-#      loop: "{{ requried_packages }}"
-#
-#    - name: Add docker's official GPG key
-#      apt_key:
-#        url: https://download.docker.com/linux/ubuntu/gpg
-#        state: present
-#
-#    - name: Add docker repository
-#      apt_repository:
-#        repo: deb https://download.docker.com/linux/ubuntu bionic stable
-#        state: present
-#
-#    - name: Update apt cache and install docker engine
-#      apt:
-#        name: "{{ item }}"
-#        state: latest
-#        update_cache: true
-#      loop: "{{ docker_engines }}"
-#
-#    - name: Verify docker installed
-#      shell: docker -v
-#      register: docker_version_output
-#
-#    # use ubuntu default install will cause docker login problem, so we need to install it separately (https://stackoverflow.com/questions/51222996/docker-login-fails-on-a-server-with-no-x11-installed)
-#    - name: Download Docker-Compose
-#      get_url:
-#        url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64"
-#        dest: /usr/local/bin/docker-compose
-#        mode: a+x
-#
-#    - name: Verify docker-compose installed
-#      shell: docker-compose -v
-#      register: docker_compose_version_output
-#
-#    - name: Copy docker-compose.yml to remote
-#      copy:
-#        src: ./docker-compose.yml
-#        dest: /root
-#      become_user: root
-#
-#    - debug: msg="{{ docker_version_output.stdout }}"
-#    - debug: msg="{{ docker_compose_version_output.stdout }}"
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: true
+      loop: "{{ requried_packages }}"
+
+    - name: Add docker's official GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: Update apt cache and install docker engine
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: true
+      loop: "{{ docker_engines }}"
+
+    - name: Verify docker installed
+      shell: docker -v
+      register: docker_version_output
+
+    # use ubuntu default install will cause docker login problem, so we need to install it separately (https://stackoverflow.com/questions/51222996/docker-login-fails-on-a-server-with-no-x11-installed)
+    - name: Download Docker-Compose
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64"
+        dest: /usr/local/bin/docker-compose
+        mode: a+x
+
+    - name: Verify docker-compose installed
+      shell: docker-compose -v
+      register: docker_compose_version_output
+
+    - name: Copy docker-compose.yml to remote
+      copy:
+        src: ./docker-compose.yml
+        dest: /root
+      become_user: root
+
+    - debug: msg="{{ docker_version_output.stdout }}"
+    - debug: msg="{{ docker_compose_version_output.stdout }}"
